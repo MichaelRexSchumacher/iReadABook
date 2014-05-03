@@ -1,0 +1,10 @@
+﻿@model List<iReadABook.Models.Book.BookViewModel>
+
+@foreach (var book in Model)
+{
+    <div>
+        <a href="@Url.Action("Detail", "Book", new {@id=book.ID })">@book.Title</a> - @book.Author - @book.ISBN
+        <img src="@book.ImageLink"/>
+        <img src="@String.Format("http://covers.openlibrary.org/b/isbn/{0}-S.jpg",book.ISBN)" />
+    </div>
+}
