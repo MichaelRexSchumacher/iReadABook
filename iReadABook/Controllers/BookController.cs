@@ -94,8 +94,11 @@ namespace iReadABook.Controllers
                 ISBN = industryIdentifier.Identifier,
                 Title = result.VolumeInfo.Title,
                 ImageLink = imageLink,
-                Id = id
+                Id = id,
+                Description = result.VolumeInfo.Description
             };
+
+            viewModel.Questions = new List<string> { "This is a question?" };
 
             return View(viewModel);
         }

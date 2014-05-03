@@ -11,7 +11,8 @@ namespace iReadABook.Models.Book
         public string ISBN { get; set; }
         public string Author { get; set; }
         public string ImageLink { get; set; }
-
+        public string Description { get; set; }
         public string Id { get; set; }
+        public List<string> Questions { get; set; }
     }
 }
