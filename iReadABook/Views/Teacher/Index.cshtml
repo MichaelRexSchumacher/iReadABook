@@ -1,0 +1,91 @@
+﻿@model iReadABook.Models.Teacher.TeacherIndexViewModel
+
+@section header {
+    <style>
+        .memberList li {
+            list-style: none;
+            float: left;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+
+        .memberList li img {
+            list-style: none;
+            float: left;
+            width: 100px;
+            height: 100px
+        }
+
+        .nonBulletedList li {
+            list-style: none;
+        }
+    </style>
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Your Start Page</h1>
+
+<div>
+    <div class="col-lg-12  memberList">
+        <h2>Your Students</h2>
+        <ul>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_10821.jpg" alt="Alternate Text" title="Jerod Krone" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_1825.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_2015.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_5244.gif" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_11836.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_20827.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://avatars.jurko.net/uploads/avatar_21517.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_13001.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_2638.gif" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/994949.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/994949.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_2638.gif" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_13001.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://avatars.jurko.net/uploads/avatar_21517.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_20827.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_11836.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_5244.gif" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_2015.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_1825.jpg" alt="Alternate Text" /></a></li>
+            <li><a href="@Url.Action("Details","Student")"><img src="http://img1.jurko.net/avatar_10821.jpg" alt="Alternate Text" /></a></li>
+        </ul>
+    </div>
+
+    <div class="col-lg-12 nonBulletedList" style="clear:both; padding-top: 5px">
+        <h2>Your Students</h2>
+        <ul>
+            <li><h3>The top rated book is <a href="@Url.Action("Detail", "Book", new { @id = "ZJuLKKpvOBYC" })">"Wonder"</a> with a score of 4.75</h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book", new { @id = "ZJuLKKpvOBYC" })">9</a> students have read <a href="@Url.Action("Detail", "Book", new { @id = "ZJuLKKpvOBYC" })">"Divergant"</a></h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book")">3</a> students want to read <a href="@Url.Action("Detail", "Book", new { @id = "ZJuLKKpvOBYC" })">"Wonder"</a>.</h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book")">7</a> students are interested in girl heros.</h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book")">4</a> students read <a href="@Url.Action("Detail", "Book", new { @id = "ZJuLKKpvOBYC" })">"Where the Red Fern Grows"</a>.</h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book")">2</a> students are interested in girl heros.</h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book")">6</a> students completed a assesment.</h3></li>
+        </ul>
+    </div>
+
+    <div class="col-lg-12 nonBulletedList">
+        <h2>Your Assesments</h2>
+        <ul>
+            <li><h3><a href="@Url.Action("Detail", "Book", new { @id = "ZJuLKKpvOBYC" })">Wonder</a></h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book")">Divergent</a></h3></li>
+            <li><h3><a href="@Url.Action("Detail", "Book")">Hunger Games - MockingJay</a></h3></li>
+        </ul>
+    </div>
+
+    <div class="col-lg-12">
+        <h2>Recent Activity</h2>
+        <ul>
+            <li><h3>Jerod Krone<a href="@Url.Action("Detail", "Book", new { @id = "ZJuLKKpvOBYC" })"> completed an assessment</a></h3></li>
+            <li><h3>Michael Schumacher completed <a href="@Url.Action("Detail", "Book")">"Wonder"</a></h3></li>
+            <li><h3>Carleen Kerttula rated <a href="@Url.Action("Detail", "Book")">Hunger Games - MockingJay</a> 4.5 stars</h3></li>
+            <li><h3>Alex Rodriguez wants to read <a href="@Url.Action("Detail", "Book")">Divergent</a></h3></li>
+        </ul>
+    </div>
+
+</div>
+
