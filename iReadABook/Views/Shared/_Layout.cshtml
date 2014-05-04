@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -18,7 +18,8 @@
         <div class="navbar" style="background-color:white; border:0px;">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="index.html" id="logo"><img src="~/Content/images/iReadaBookwl.jpg" /></a>
+                    
+                    <a href="/home/index" id="logo"><img src="~/Content/images/iReadaBookwl.jpg" /></a>
                 </div>
                 <div class="navbar-collapse collapse" style="margin-top:40px;">
                     @Html.Partial("_LoginPartial")
@@ -35,7 +36,12 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - iReadABook</p>
+                <div><img height="100%" width="100%" src="~/Content/images/iRead_footer.jpg" /></div><br /> 
+                <div style="text-align:center">
+                    <img height="30" width="30" src="~/Content/images/facebook-wrap.png" /> &nbsp;
+                    <img height="30" width="30" src="~/Content/images/twitter-wrap.png" /> &nbsp;
+                    &copy; @DateTime.Now.Year - iReadABook
+                </div>
             </footer>
         </div>
     </div>
