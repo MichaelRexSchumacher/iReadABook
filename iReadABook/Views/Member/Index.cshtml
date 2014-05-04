@@ -1,8 +1,72 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@section header{
+<style>
+    #ratedBooks li {
+        float: left;
+        margin-right: 10px;
+        min-height: 128px;
+    }
+
+    #recommendedBooks li {
+        float: left;
+        margin-right: 10px;
+        min-height: 128px;
+    }
+
+    #wantToReadBooks li {
+        float: left;
+        margin-right: 10px;
+        min-height: 128px;
+    }
+
+    .rateit {
+        padding-left: 10px;
+    }
+</style>
+
 }
 
-<h2>Group Member - Jerod Krone</h2>
+@{
+    ViewBag.Title = "Maggie Krone";
+}
 
-<d>
+<div class="row" style="position: relative; clear: both; overflow: auto; padding-top: 25px; text-align: center">
+    <div style="float: left">
+        <img src="~/Content/images/avatar_10821.jpg" />
+        <span style="font-size:30px; font-weight:bold">Maggie Krone</span>
+    </div>
+</div>
+<div class="row nonBulletedList" style="overflow:auto">
+    <h2>Maggie's favorite books</h2>
+    <ul id="recommendedBooks">
+        <li>
+            <div>
+                <img style="display: block" src="http://bks7.books.google.com/books?id=ZJuLKKpvOBYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api">
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="row nonBulletedList" style="overflow:auto">
+    <h2>Maggie's want's to read</h2>
+    <ul id="wantToReadBooks">
+        <li>
+            <div>
+                <img style="display: block" src="http://bks1.books.google.com/books?id=FFTJDYx_ZiEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api">
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="row nonBulletedList">
+    <h2>Recent Activity</h2>
+    <ul>
+        <li><h3>Maggie read 10 books this month.</h3></li>
+        <li><h3>Maggie completed a review of "<a href="@Url.Action("Detail", "Book")">Divergant</a>".</h3></li>
+        <li><h3>Mom <a href="#">made a comment</a> on Maggie's review of "<a href="@Url.Action("Detail", "Book")">Wonder</a>".</h3></li>
+    </ul>
+</div>
+<div class="row nonBulletedList">
+    <h2>Maggie's Assessment Scores</h2>
+    <ul>
+        <li><h3>Maggie's reading level is 4.6 (<a href="#">update</a>)</h3></li>
+        <li><h3>Maggie's assessment score is 8.3 (<a href="#">update</a>)</h3></li>
+    </ul>
+</div>
