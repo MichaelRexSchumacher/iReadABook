@@ -21,7 +21,26 @@
     .rateit {
         padding-left: 10px;
     }
+
+    .largeTextArea {
+        width: 400px;
+        height: 100px;
+    }
+
+    .questionAdd {
+        cursor: pointer;
+    }
+
+    .modelList li {
+        padding-bottom: 20px;
+    }
+
+    .modelList {
+        padding-left: 20px;
+    }
 </style>
+
+<link href="~/Content/bootstrap-tagsinput.css" rel="stylesheet" />
 
 }
 
@@ -59,8 +78,14 @@
     <h2>Recent Activity</h2>
     <ul>
         <li><h3>Maggie read 10 books this month.</h3></li>
-        <li><h3>Maggie completed a review of "<a href="@Url.Action("Detail", "Book")">Divergant</a>".</h3></li>
+        <li><h3>Maggie completed "Wonder", <a href="javascript:" onclick="addQuestion('Wonder')">make an inquiry</a>.</h3></li>
         <li><h3>Mom <a href="#">made a comment</a> on Maggie's review of "<a href="@Url.Action("Detail", "Book")">Wonder</a>".</h3></li>
+    </ul>
+</div>
+<div id="assessments" class="row nonBulletedList" style="display:none">
+    <h2>Open Inquiries</h2>
+    <ul>
+        <li><h3>Wonder - Who is your favorite character, and why? (unanswered)</h3></li>
     </ul>
 </div>
 <div class="row nonBulletedList">
@@ -70,3 +95,62 @@
         <li><h3>Maggie's assessment score is 8.3 (<a href="#">update</a>)</h3></li>
     </ul>
 </div>
+
+<div class="modal" id="addQuestionModal">
+    <div class="modal-dialog modal-lg" style="">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add a question for Maggie Krone on Wonder</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Popular questions for Wonder</h3>
+                <ul class="nonBulletedList modelList">
+                    <li>
+                        <i class="fa fa-fw questionAdd">&#xf055;</i>Thoughout Wonder, Auggie describes the way that many people react to seeing his face for the the first time: by immediately looking away.
+                        Have you ever been in a situation where you have responeded like this to seeing someone different?  Having read Wonder, how do you feel about this now? <i class="fa fa-fw questionPlus"></i>
+                    </li>
+                    <li><i class="fa fa-fw questionAdd">&#xf055;</i>How would you describe Auggie as a person in the first few chapters of the book? What about the final few chapters? Has he changed significantly? Are there any experiences or episodes during the story that you think had a particular effect on him? If so, how? </li>
+                    <li><i class="fa fa-fw questionAdd">&#xf055;</i>Choose a precept, and explain what it means to you.</li>
+                    <li><i class="fa fa-fw questionAdd">&#xf055;</i>How does Via’s attitude towards her brother change throughout the story?</li>
+                    <li><i class="fa fa-fw questionAdd">&#xf055;</i>In the chapter ‘Costumes’ Auggie describes the astronaut helmet that he wore constantly as a younger child. We later learn that Miranda was the one to give Auggie the helmet, and is proud of the gift, but that it was Auggie’s father who threw it away. What do you think the helmet signifies to each of these characters and why do you think they all view it so differently?</li>
+                </ul>
+                @using (Html.BeginForm("AddQuestion", "Book"))
+                {
+                    <div class="form-horizontal" style="padding-left: 40px">
+                        <div class="form-group">
+                            <h4 style="font-weight:bold; display:block">Or enter your question below:</h4>
+                            @Html.TextArea("Question", new { @id = "addQuestionTextBox", @class = "largeTextArea" })
+                        </div>
+                        <div class="form-group">
+                            <span style="font-weight:bold; display:block">Standards:</span>
+                            <input type="text" name="tags" data-role="tagsinput" style="width: 280px" />
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-primary" id="btnAddQuestion" type="submit" name="submit" onclick="return false;" value="Save" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function addQuestion(title) {
+        $("#addQuestionModal").modal();
+        return false;
+    }
+
+    $(
+        $("#btnAddQuestion").click(function () {
+            var text = $("#addQuestionTextBox")[0].value;
+            $("#teacherQuestions ul").append($("<li>" + text + "</li>"));
+            $("#addQuestionModal").modal("toggle");
+            $("#assessments").show();
+            return false;
+        })
+    );
+</script>
