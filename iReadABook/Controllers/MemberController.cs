@@ -14,5 +14,10 @@ namespace iReadABook.Controllers
         {
             return View();
         }
+
+        public ActionResult MemberStart()
+        {
+            return View();
+        }
 	}
 }

@@ -1,0 +1,98 @@
+﻿@section header {
+    <style>
+        #ratedBooks li{
+            float:left;
+            margin-right: 10px;
+            min-height: 128px;
+        }
+
+        .recommendedBooks li {
+            float: left;
+            margin-right: 10px;
+            min-height: 128px;
+        }
+
+        .rateit {
+            padding-left: 10px;
+        }
+    </style>
+
+    <script src="~/Scripts/jquery.rateit.js"></script>
+    <link href="~/Content/rateit.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "My Page";
+}
+
+<div class="row" style="position: relative; clear: both; overflow: auto; padding-top: 25px; text-align: center">
+    <div style="float: left">
+        <img src="~/Content/images/avatar_10821.jpg" />
+        <span style="font-size:30px; font-weight:bold">My Page</span>
+    </div>
+    <div style="float:right; ">
+        @using (Html.BeginForm("Search","Book",FormMethod.Get,new {@class = ""}))
+        {
+            <div style="display: table-cell; vertical-align: middle; height: 100px;">
+                @Html.TextBox("searchTerm",null, new {style="display: table-cell;",placeholder="Find a book!"})
+                <input type="submit" name="submit" value="Go!" />
+            </div>
+        }
+    </div>
+</div>
+<div class="row nonBulletedList">
+    <h2>Recent Activity</h2>
+    <ul>
+        <li><h3>Alex Rodriguez read "<a href="@Url.Action("Detail", "Book")">Wonder</a>".</h3></li>
+        <li><h3>Ms. Raymond <a href="#">wants your feedback</a> on "Wonder"</h3></li>
+        <li><h3>Wow! you read 10 books this month.</h3></li>
+        <li><h3>5 friends read "<a href="@Url.Action("Detail", "Book")">Divergant</a>"</h3></li>
+        <li><h3>Mom <a href="#">made a comment</a> on your review of "<a href="@Url.Action("Detail", "Book")">Wonder</a>"</h3></li>
+    </ul>
+</div>
+<div class="row nonBulletedList recommendedBooks" style="overflow:auto">
+    <h2>Books Recommended For You</h2>
+    <ul id="">
+        <li>
+            <div>
+                <img style="display: block" src="http://bks5.books.google.com/books?id=d7u-LiRVHhMC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70BmkuWhlifI3flzC-0hEKLdQgKaFY5-eNKHh7Jg-ZUGItldw6Q5PnuuP5dcnaeLtpg3GwaKYB-O3dIUjodHyR-mMb8bvOvu7eeFglEQ1DJrFdLnaY&source=gbs_api">
+                <a href="#">Where the Red Fern Grows</a>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="row nonBulletedList" style="overflow:auto">
+    <h2>Books You've Rated</h2>
+    <ul id="ratedBooks">
+        <li>
+            <div>
+                <img style="display: block" src="http://bks5.books.google.com/books?id=_oaAHiFOZmgC&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api">
+                <div class="rateit" data-rateit-value="4.5" data-rateit-ispreset="true">
+                </div>
+            </div>  
+        </li>
+        <li>
+            <div>
+                <img style="display: block" src="http://bks9.books.google.com/books?id=X9jv6ZRwzFgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api">
+                <div class="rateit" data-rateit-value="4" data-rateit-ispreset="true"></div>
+            </div>
+        </li>
+        <li>
+            <div>
+                <img style="display: block" src="http://bks7.books.google.com/books?id=ZJuLKKpvOBYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api">
+                <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="row nonBulletedList recommendedBooks" style="overflow:auto">
+    <h2>Books You Recommend</h2>
+    <ul id="recommendedBooks">
+        <li>
+            <div>
+                <img style="display: block" src="http://bks7.books.google.com/books?id=ZJuLKKpvOBYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api">
+            </div>
+        </li>
+    </ul>
+</div>
+

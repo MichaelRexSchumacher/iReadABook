@@ -9,6 +9,14 @@
             width: 400px;
             height: 100px;
         }
+
+        #topTeacherAssignTeacherActions li{
+            font-size: 15px;
+        }
+
+        .questionAdd :hover{
+            cursor: pointer;
+        }
     </style>
 }
 
@@ -18,17 +26,19 @@
 
 <h1>@Model.Title by @Model.Author</h1>
 
-<div>
-    <img src="@Model.ImageLink" />
-    <p>
+<div class="row" style="overflow:auto">
+    <div class="col-lg-2" style="float: left">
+        <img src="@Model.ImageLink" />
+    </div>
+    <div class="col-lg-10" style="float:right">
         @Html.Raw(Model.Description)
-    </p>
+    </div>
 </div>
 
 @if (User.IsInRole("Teacher"))
 {
-    <div id="topTeacherAssignTeacherActions">
-        <span>Top Questions for Wonder:</span>
+    <div class="row" id="topTeacherAssignTeacherActions">
+        <h3>Top Questions for Wonder:</h3>
         <ul>
             <li><i class="fa fa-fw questionAdd">&#xf055;</i>Thoughout Wonder, Auggie describes the way that many people react to seeing his face for the the first time: by immediately looking away.
             Have you ever been in a situation where you have responeded like this to seeing someone different?  Having read Wonder, how do you feel about this now? <i class="fa fa-fw questionPlus"></i></li>
