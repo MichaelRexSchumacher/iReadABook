@@ -243,6 +243,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\avatar_10821.jpg" />
+    <Content Include="Content\images\ireadabook-website.jpg" />
     <Content Include="Content\rateit.css" />
     <Content Include="Content\star.gif" />
     <Content Include="favicon.ico" />
