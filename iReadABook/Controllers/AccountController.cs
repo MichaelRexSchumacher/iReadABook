@@ -92,10 +92,13 @@ namespace iReadABook.Controllers
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, model.SelectedUserType);
-
+                    var controller = "Home";
+                    var action = "Index";
                     if (model.SelectedUserType == "Teacher")
                     {
-                        AddTeacher(user.Id);                        
+                        AddTeacher(user.Id);
+                        controller = "Teacher";
+                        action = "Index";
                     }
                     else if (model.SelectedUserType == "Student")
                     {
@@ -107,7 +110,7 @@ namespace iReadABook.Controllers
                     }
                     
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(action, controller);
                 }
                 else
                 {

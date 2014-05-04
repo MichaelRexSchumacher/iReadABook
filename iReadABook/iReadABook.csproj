@@ -227,7 +227,6 @@
     <Compile Include="Migrations\201405031813073_InitialCreate.Designer.cs">
       <DependentUpon>201405031813073_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book\BookDetailsViewModel.cs" />
     <Compile Include="Models\Book\SearchResultsViewModel.cs" />
@@ -264,6 +263,8 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\bootstrap-tag\less\bootstrap-tag.less" />
     <Content Include="README.md" />
+    <None Include="Properties\PublishProfiles\ireadabook - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ireadabook - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
