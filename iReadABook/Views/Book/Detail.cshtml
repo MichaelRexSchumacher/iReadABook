@@ -3,6 +3,8 @@
 @section header {
     <script src="~/Scripts/jquery.rateit.js"></script>
     <link href="~/Content/rateit.css" rel="stylesheet" />
+    
+    <link href="~/Content/bootstrap-tagsinput.css" rel="stylesheet" />
 
     <style>
         .largeTextArea {
@@ -12,10 +14,27 @@
 
         #topTeacherAssignTeacherActions li{
             font-size: 15px;
+            list-style: none;
         }
 
-        .questionAdd :hover{
+        .questionAdd:hover{
             cursor: pointer;
+        }
+
+        #teacherQuestions li {
+            font-size: 15px;
+        }
+
+        #teacherQuestions:hover {
+            cursor: pointer;
+        }
+        
+        #btnAddQuestion:hover {
+            cursor: pointer;
+        }
+
+        .nonBulletedList {
+            padding-left: 15px;
         }
     </style>
 }
@@ -26,11 +45,35 @@
 
 <h1>@Model.Title by @Model.Author</h1>
 
-<div class="row" style="overflow:auto">
+<div class="row" style="border: 1px solid grey; overflow:auto">
     <div class="col-lg-2" style="float: left">
-        <img src="@Model.ImageLink" />
+        <img style="margin-left:10px; margin-top: 20px" src="@Model.ImageLink" />
+@if (User.IsInRole("Teacher"))
+{
+    <div style="padding-top: 15px">
+        <h5 style="font-weight:bold; margin-left:10px">Your Class:</h5>
+        <ul class="nonBulletedList">
+            <li>
+                Reading: <a href="#">5</a>.
+            </li>
+            <li>
+                Recommended: <a href="#">10</a>.
+            </li>
+        </ul>
     </div>
-    <div class="col-lg-10" style="float:right">
+}
+else
+{
+        <div style="padding-top:20px" id="userActions">
+            <button type="submit" style="margin-bottom: 10px" class="btn btn-primary">I Want To Read This!</button>
+            <span style="margin-top:10px">Rate this book:</span>
+            <div class="rateit">
+            </div>
+        </div>
+}
+
+    </div>
+    <div class="col-lg-10" style="float: right; padding-top: 10px; padding-bottom: 10px;">
         @Html.Raw(Model.Description)
     </div>
 </div>
@@ -50,34 +93,30 @@
     </div>
     
     <div id="teacherQuestions">
-        <span>Your Questions <i id="customQuestionAdd" class="fa fa-fw">&#xf055;</i></span>
-        <ul>
-            <li>Who is your favorite character and why? (answers)</li>
+        <h3>Your Questions <i id="customQuestionAdd" class="fa fa-fw">&#xf055;</i></h3>
+        <ul class="nonBulletedList">
+            <li>Who is your favorite character and why? (<a href="#">answers</a>)</li>
         </ul>
     </div>
 }
 else
 {
-    <div id="userActions">
-        <span>Rate this book:</span>
-        <div class="rateit">
-        </div>
-    </div>    
-    <div id="teacherQuestions">
+    <div id="teacherQuestions" class="row nonBulletedList" >
+        <h3>Feedback Requested From Ms. Smith</h3>
         @foreach (var question in Model.Questions)
         {
             <div>
-                <span>@question</span>
+                <h4>@question</h4>
             </div>
             <div>
-                <span>@Html.TextArea("questionAnswer")</span>
+                @Html.TextArea("questionAnswer", new {@class="largeTextArea" })
             </div>        
         }
     </div>    
 }
 
 <div class="modal" id="addQuestionModal">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="max-width:400px">
 
         <div class="modal-content">
             <div class="modal-header">
@@ -89,13 +128,15 @@ else
                 {
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <span style="font-weight:bold">Enter your question below:</span>
-                            <div class="col-lg-10">
+                            <span style="font-weight:bold; display:block">Enter your question below:</span>
                                 @Html.TextArea("Question", new {@id="addQuestionTextBox", @class="largeTextArea" })
-                            </div>
                         </div>
                         <div class="form-group">
-                            <input id="btnAddQuestion" type="submit" name="submit" onclick="return false;" value="Save" />
+                            <span style="font-weight:bold; display:block">Standards:</span>
+                            <input type="text" name="tags" data-role="tagsinput" style="width: 280px" />
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-primary" id="btnAddQuestion" type="submit" name="submit" onclick="return false;" value="Save" />
                         </div>
                     </div>
                 }

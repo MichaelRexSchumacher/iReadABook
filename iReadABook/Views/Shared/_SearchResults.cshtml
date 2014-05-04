@@ -2,9 +2,13 @@
 
 @foreach (var book in Model)
 {
-    <div>
-        <a href="@Url.Action("Detail", "Book", new {@id=book.ID })">@book.Title</a> - @book.Author - @book.ISBN
-        <img src="@book.ImageLink"/>
-        <img src="@String.Format("http://covers.openlibrary.org/b/isbn/{0}-S.jpg",book.ISBN)" />
+    <div class="row" style=" overflow:auto; margin-bottom: 5px;">
+        <div style="float: left">
+            <img src="@book.ImageLink" />
+        </div>
+        <div style="float: left; height: 80px; margin-left:20px">
+            <h4><a href="@Url.Action("Detail", "Book", new {@id=book.ID })">@book.Title</a> - @book.Author </h4>
+
+        </div>
     </div>
 }
