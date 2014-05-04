@@ -22,11 +22,6 @@
         padding-left: 10px;
     }
 
-    .largeTextArea {
-        width: 400px;
-        height: 100px;
-    }
-
     .questionAdd {
         cursor: pointer;
     }
@@ -48,7 +43,7 @@
     ViewBag.Title = "Maggie Krone";
 }
 
-<div class="row" style="position: relative; clear: both; overflow: auto; padding-top: 25px; text-align: center">
+<div class="row" style="position: relative; clear: both; overflow: auto; border: 1px solid; text-align: center">
     <div style="float: left">
         <img src="~/Content/images/avatar_10821.jpg" />
         <span style="font-size:30px; font-weight:bold">Maggie Krone</span>
@@ -78,7 +73,7 @@
     <h2>Recent Activity</h2>
     <ul>
         <li><h3>Maggie read 10 books this month.</h3></li>
-        <li><h3>Maggie completed "Wonder", <a href="javascript:" onclick="addQuestion('Wonder')">make an inquiry</a>.</h3></li>
+        <li><h3>Maggie completed "Wonder", <a href="javascript:" onclick="addQuestion('Wonder'); return false;">make an inquiry</a>.</h3></li>
         <li><h3>Mom <a href="#">made a comment</a> on Maggie's review of "<a href="@Url.Action("Detail", "Book")">Wonder</a>".</h3></li>
     </ul>
 </div>
@@ -98,7 +93,6 @@
 
 <div class="modal" id="addQuestionModal">
     <div class="modal-dialog modal-lg" style="">
-
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

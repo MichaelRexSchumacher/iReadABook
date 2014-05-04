@@ -35,7 +35,7 @@
 }
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Book Details";
 }
 
 <h1>@Model.Title by @Model.Author</h1>
@@ -101,11 +101,8 @@ else
         @foreach (var question in Model.Questions)
         {
             <div>
-                <h4>@question</h4>
-            </div>
-            <div>
-                @Html.TextArea("questionAnswer", new {@class="largeTextArea" })
-            </div>        
+                <h4>@question <a href="#">(Respond)</a></h4>
+            </div>      
         }
     </div>    
 }

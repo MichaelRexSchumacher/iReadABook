@@ -44,3 +44,8 @@ input[type="checkbox"].input-validation-error {
 .nonBulletedList li {
             list-style: none;
         }
+
+.largeTextArea {
+        width: 400px;
+        height: 100px;
+    }
