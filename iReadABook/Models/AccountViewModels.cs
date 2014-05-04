@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web.WebPages.Html;
 
 namespace iReadABook.Models
 {
@@ -59,5 +61,9 @@ namespace iReadABook.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public List<System.Web.Mvc.SelectListItem> UserType { get; set; }
+
+        public string SelectedUserType { get; set; }
     }
 }

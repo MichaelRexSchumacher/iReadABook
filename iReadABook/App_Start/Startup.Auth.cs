@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
@@ -19,6 +20,17 @@ namespace iReadABook
             // Use a cookie to temporarily store information about a user logging in with a third party login provider
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new IdentityDbContext()));
+            if (!RoleManager.RoleExists("Teacher"))
+            {
+                var roleresult = RoleManager.Create(new IdentityRole("Teacher"));
+            }
+
+            if (!RoleManager.RoleExists("Student"))
+            {
+                var roleresult = RoleManager.Create(new IdentityRole("Student"));
+            }
+            
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",

@@ -8,7 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using iReadABook.Data;
 using iReadABook.Models;
+using iReadABook.Service;
 
 namespace iReadABook.Controllers
 {
@@ -66,7 +68,14 @@ namespace iReadABook.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var viewModel = new RegisterViewModel();
+
+            viewModel.UserType = new List<SelectListItem> { 
+                new SelectListItem{Text = "Student",Value="Student",Selected=true },
+                new SelectListItem{Text = "Teacher", Value = "Teacher"}
+            };
+
+            return View(viewModel);
         }
 
         //
@@ -82,6 +91,21 @@ namespace iReadABook.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, model.SelectedUserType);
+
+                    if (model.SelectedUserType == "Teacher")
+                    {
+                        AddTeacher(user.Id);                        
+                    }
+                    else if (model.SelectedUserType == "Student")
+                    {
+
+                    }
+                    else
+                    {
+                        throw new ApplicationException("Invalid Role");
+                    }
+                    
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -91,8 +115,19 @@ namespace iReadABook.Controllers
                 }
             }
 
+            model.UserType = new List<SelectListItem> { 
+                new SelectListItem{Text = "Student",Value="Student",Selected=true },
+                new SelectListItem{Text = "Teacher", Value = "Teacher"}
+            };
+
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private void AddTeacher(string userId)
+        {
+            var service = new TeacherService();
+            service.AddTeacher(userId);
         }
 
         //
