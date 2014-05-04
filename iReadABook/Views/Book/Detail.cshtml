@@ -3,38 +3,98 @@
 @section header {
     <script src="~/Scripts/jquery.rateit.js"></script>
     <link href="~/Content/rateit.css" rel="stylesheet" />
+
+    <style>
+        .largeTextArea {
+            width: 400px;
+            height: 100px;
+        }
+    </style>
 }
 
 @{
     ViewBag.Title = "Detail";
 }
 
-<h2>Detail</h2>
+<h1>@Model.Title by @Model.Author</h1>
 
 <div>
     <img src="@Model.ImageLink" />
-    <span>@Model.Title</span>
-    <span>@Model.Author</span>
     <p>
-        @Model.Description
+        @Html.Raw(Model.Description)
     </p>
 </div>
-<div id="userActions">
-    <span>Rate this book:</span>
-    <div class="rateit">
+
+@if (User.IsInRole("Teacher"))
+{
+    <div id="topTeacherAssignTeacherActions">
+        <span>Top Questions for Wonder:</span>
+        <ul>
+            <li><i class="fa fa-fw questionAdd">&#xf055;</i>Thoughout Wonder, Auggie describes the way that many people react to seeing his face for the the first time: by immediately looking away.
+            Have you ever been in a situation where you have responeded like this to seeing someone different?  Having read Wonder, how do you feel about this now? <i class="fa fa-fw questionPlus"></i></li>
+            <li><i class="fa fa-fw questionAdd">&#xf055;</i>How would you describe Auggie as a person in the first few chapters of the book? What about the final few chapters? Has he changed significantly? Are there any experiences or episodes during the story that you think had a particular effect on him? If so, how? </li>
+            <li><i class="fa fa-fw questionAdd">&#xf055;</i>Choose a precept, and explain what it means to you.</li>
+            <li><i class="fa fa-fw questionAdd">&#xf055;</i>How does Via’s attitude towards her brother change throughout the story?</li>
+            <li><i class="fa fa-fw questionAdd">&#xf055;</i>In the chapter ‘Costumes’ Auggie describes the astronaut helmet that he wore constantly as a younger child. We later learn that Miranda was the one to give Auggie the helmet, and is proud of the gift, but that it was Auggie’s father who threw it away. What do you think the helmet signifies to each of these characters and why do you think they all view it so differently?</li>
+        </ul>
+    </div>
+    
+    <div id="teacherQuestions">
+        <span>Your Questions <i id="customQuestionAdd" class="fa fa-fw">&#xf055;</i></span>
+        <ul>
+            <li>Who is your favorite character and why? (answers)</li>
+        </ul>
+    </div>
+}
+else
+{
+    <div id="userActions">
+        <span>Rate this book:</span>
+        <div class="rateit">
+        </div>
+    </div>    
+    <div id="teacherQuestions">
+        @foreach (var question in Model.Questions)
+        {
+            <div>
+                <span>@question</span>
+            </div>
+            <div>
+                <span>@Html.TextArea("questionAnswer")</span>
+            </div>        
+        }
+    </div>    
+}
+
+<div class="modal" id="addQuestionModal">
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add a question</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("AddQuestion", "Book"))
+                {
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <span style="font-weight:bold">Enter your question below:</span>
+                            <div class="col-lg-10">
+                                @Html.TextArea("Question", new {@id="addQuestionTextBox", @class="largeTextArea" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input id="btnAddQuestion" type="submit" name="submit" onclick="return false;" value="Save" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
     </div>
 </div>
-<div id="teacherQuestions">
-    @foreach (var question in Model.Questions)
-    {
-        <div>
-            <span>@question</span>
-        </div>
-        <div>
-            <span>@Html.TextArea("questionAnswer")</span>
-        </div>        
-    }
-</div>
+
 <div id="discussSection">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -64,4 +124,23 @@
         s.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
+
+    $(function () {
+        $(".questionAdd").click(function (eventData) {
+            var elementToAdd = $(this).parent().clone();
+            elementToAdd.children("i").remove();
+            $("#teacherQuestions ul").append(elementToAdd);
+        });
+
+        $("#customQuestionAdd").click(function () {
+            $("#addQuestionModal").modal();
+        });
+
+        $("#btnAddQuestion").click(function () {
+            var text = $("#addQuestionTextBox")[0].value;
+            $("#teacherQuestions ul").append($("<li>" + text + "</li>"));
+            $("#addQuestionModal").modal("toggle");
+            return false;
+        });
+    });
 </script>
