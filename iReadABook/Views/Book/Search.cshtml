@@ -4,16 +4,14 @@
     ViewBag.Title = "Search";
 }
 
-<div>
-    @using (Html.BeginForm("Search","Book",FormMethod.Get,new {@class = "form-control"}))
+<div class="row" style="padding-top: 20px">
+    @using (Html.BeginForm("Search","Book",FormMethod.Get,new {@class = ""}))
     {
-        @Html.TextBox("searchTerm")
-        <input type="submit" name="submit" value="Go!" />
+        @Html.TextBox("searchTerm", null, new { placeholder = "Enter your search here" })
+        <input type="submit" class="btn-primary" name="submit" value="Go!" />
     }
-
-    
+    <h2>Results for @Model.SearchTerm</h2>
 </div>
 
-<h2>Search for @Model.SearchTerm</h2>
 
 @Html.Partial("_SearchResults",Model.Books)

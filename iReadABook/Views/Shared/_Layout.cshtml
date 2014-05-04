@@ -9,27 +9,12 @@
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("header",false)
     <style>
-        .godown { margin-top:10px; }
-        .body-content {
-            margin-left: 0px;
-            padding-left: 0px;
-            margin-top: 0px;
-        }
-        .slideshow {
-            width: 100%;
-            margin-top: 0px;
-            
-        }
-        .slideshow img {
-            padding: 0px;
-            border: 0px;
-        }
+        .col-md-4 h2 { color:red; }
     </style >
  
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <body style="padding-top:0px">
-    <div style="width:900px">
         <div class="navbar" style="background-color:white; border:0px;">
             <div class="container">
                 <div class="navbar-header">
@@ -45,7 +30,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
         <div class="container body-content" style="margin-top:0px;">
             @RenderBody()
             <hr />
@@ -57,6 +41,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/bootstrap-tagsinput.js"></script>
     @RenderSection("scripts", required: false)
 
 </body>

@@ -40,31 +40,35 @@ namespace iReadABook.Controllers
 
             foreach (var resultItem in searchResult.Items)
             {
-                var bookViewModel = new BookViewModel
+                if (!result.Books.Exists(x => x.Title == resultItem.VolumeInfo.Title))
                 {
-                    Title = resultItem.VolumeInfo.Title,
-                    ID = resultItem.Id
-                };
-                var author = resultItem.VolumeInfo.Authors != null ? resultItem.VolumeInfo.Authors.Aggregate((i, j) => i + ", " + j) : null;
-                Google.Apis.Books.v1.Data.Volume.VolumeInfoData.IndustryIdentifiersData industryIdentifier = null;
+                    var bookViewModel = new BookViewModel
+                    {
+                        Title = resultItem.VolumeInfo.Title,
+                        ID = resultItem.Id
+                    };
+                    var author = resultItem.VolumeInfo.Authors != null ? resultItem.VolumeInfo.Authors.Aggregate((i, j) => i + ", " + j) : null;
+                    Google.Apis.Books.v1.Data.Volume.VolumeInfoData.IndustryIdentifiersData industryIdentifier = null;
 
-                if (resultItem.VolumeInfo.IndustryIdentifiers != null && resultItem.VolumeInfo.IndustryIdentifiers.Any())
-                {
-                    industryIdentifier = resultItem.VolumeInfo.IndustryIdentifiers.FirstOrDefault(x => x.Type == "ISBN_13") ??
-                        resultItem.VolumeInfo.IndustryIdentifiers.FirstOrDefault(x => x.Type == "ISBN_10");
+
+
+                    if (resultItem.VolumeInfo.IndustryIdentifiers != null && resultItem.VolumeInfo.IndustryIdentifiers.Any())
+                    {
+                        industryIdentifier = resultItem.VolumeInfo.IndustryIdentifiers.FirstOrDefault(x => x.Type == "ISBN_13") ??
+                            resultItem.VolumeInfo.IndustryIdentifiers.FirstOrDefault(x => x.Type == "ISBN_10");
+                    }
+
+
+                    var imageLink = resultItem.VolumeInfo.ImageLinks != null ? resultItem.VolumeInfo.ImageLinks.SmallThumbnail : null;
+
+                    if (industryIdentifier != null && imageLink != null && author != null)
+                    {
+                        bookViewModel.Author = author;
+                        bookViewModel.ImageLink = imageLink;
+                        bookViewModel.ISBN = industryIdentifier.Identifier;
+                        result.Books.Add(bookViewModel);
+                    }
                 }
-
-
-                var imageLink = resultItem.VolumeInfo.ImageLinks != null ? resultItem.VolumeInfo.ImageLinks.Thumbnail : null;
-
-                if (industryIdentifier != null && imageLink != null && author != null)
-                {
-                    bookViewModel.Author = author;
-                    bookViewModel.ImageLink = imageLink;
-                    bookViewModel.ISBN = industryIdentifier.Identifier;
-                    result.Books.Add(bookViewModel);               
-                }
-
             }
 
             return View(result);
@@ -98,7 +102,7 @@ namespace iReadABook.Controllers
                 Description = result.VolumeInfo.Description
             };
 
-            viewModel.Questions = new List<string> { "This is a question?" };
+            viewModel.Questions = new List<string> { "Which charater do you relate to the best, why?" };
 
             return View(viewModel);
         }
