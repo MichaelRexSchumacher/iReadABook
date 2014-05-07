@@ -268,7 +268,9 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\bootstrap-tag\less\bootstrap-tag.less" />
     <Content Include="README.md" />
+    <None Include="Properties\PublishProfiles\ireadabook - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\ireadabook - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ireadabook - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\ireadabook - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
